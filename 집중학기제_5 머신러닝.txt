@@ -1,0 +1,63 @@
+
+
+데이터 분리, train_test_split()
+전체 데이터가 있을때 학습 데이터와 예측할 데이터가 분리되어야 한다.
+이 과정을 쉽게 할 수 있도록 sklearn에서 제공하는 메서드가  train_test_split() 이다.
+
+# train 데이터와 test 데이터를 자동으로 나누어주는 train_test_split() 메서드
+X_train, X_test, y_train, y_test = train_test_split(iris.data[:,:2], iris.target)
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
+
+model = LogisticRegression()
+model.fit(X_train, y_train) # 학습할 데이터로만 학습시킴
+y_pred = model.predict(X_test) 
+
+mglearn.plots.plot_2d_classification(model, X_test, fill=True, eps = 0.5, alpha=0.4)
+mglearn.discrete_scatter(X_test[:, 0], X_test[:,1],y_test) 
+plt.legend(loc=4)
+
+
+kNN , 한 데이터를 판단할때 그 데이터와 가까운 N개의 샘플을 고려한다는것.
+ - 신경망에 비해 직관적이고 이해하기 쉽다. 
+ - N값을 정하는게 중요함. 옵션에 따라 결과가 완전히 달라진다.
+ - 대부분의 분류 문제에 먼적용하는걸 추천
+ - 결과값이 직선으로 나오지 않는다.
+
+
+
+
+# 새로운 데이터, 유방암 데이터
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt 
+from sklearn.datasets import load_breast_cancer
+cancer = load_breast_cancer()
+
+fig, axis = plt.subplots(5,6,figsize = [12,16])
+for i in range(30):
+    plt.subplot(5,6,i+1)
+    plt.scatter(cancer.data[:,0], cancer.data[:,i] ,c = cancer.target, cmap = 'autumn', alpha = 0.1)
+    plt.title(cancer.feature_names[i] + ('\n(%d)' % (i+1)))
+    plt.axis('off')
+
+
+
+커널 기법 : 속성을 늘려주거나 변환하는 수학적 방법.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
