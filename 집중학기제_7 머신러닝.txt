@@ -1,0 +1,32 @@
+
+
+상관계수
+-1 ~ 1 사이의 값을 가짐
+
+
+
+
+
+
+
+비지도학습
+K-means
+DBSCAN
+
+
+
+
+
+주 성분 분석, PCA
+
+
+자연어 처리 : 단어를 숫자로 바꿈
+
+
+행복도 조사
+plt.scatter(np.exp(whr.iloc[:,6]), whr.iloc[:,2], c='gray')
+plt.scatter(np.exp(whr.iloc[61,6]), whr.iloc[61,2], c='red')
+plt.scatter(np.exp(whr.iloc[55,6]), whr.iloc[55,2], c='blue')
+plt.legend(['all', 'korea', 'japan'], loc = 'lower right')
+plt.xlabel('GDP')
+plt.ylabel('Ladder Score')
