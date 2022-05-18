@@ -1,0 +1,124 @@
+
+
+np.loadtxt()를 이용해 파일에서 읽어오기
+
+판다스를 이용한 파일 읽어오기
+pd.read_csv('iris.csv')
+.values로 array 변환
+
+happy = pd.read_csv('C:\\Users\\SP501_47\\Downloads\\world_happiness_report_2021.csv')
+data = happy[['Ladder score', 'Logged GDP per capita']].values	# array 변환
+
+
+간단 통계
+합계, 카운트, 평균, 분산, 표준편차
+표 형태의 데이터이기때문에 통계 계산의 방향이 필요함 (axis 필요)
+axis = 0 일때 >>> 세로 방향 계산(컬럼 별 계산)
+axis = 1 일때 >>> 가로 방향 계산(행 별 계산)
+
+a = np.arange(12).reshape(4, 3)
+
+print(a.mean())
+result : 5.5
+
+print(a.mean(axis = 0))
+result : [4.5 5.5 6.5]
+
+print(a.mean(axis = 1))
+result : [ 1.  4.  7. 10.]
+
+데이터 뽑아오기
+a[[1,2,3], [4,5,6]] : 1,2,3번 행의 4,5,6번 열을 출력
+a[[True, False, True]] : 0, 2번 행을 가져와라 
+>> 조건식과 함께 사용해서 유용해질 수 있다.
+
+a[:, 0]> 50 의 결과 = [True, True, False, False] >>> 0번 열의 값이 50 초과인 행을 고르기
+a[ a[:, 0] > 50 ] = a[[True, True, False, False]] >>>> 0, 1번 행을 가져와라
+
+# 국어 영어 수학 연습문제
+
+# 영어 성적이 80점 이상인 학생의 수학 성적을 출력하시오
+scores[scores[:,2] >= 80, 0]
+
+# 수학 성적과 국어 영어 성적이 80점 이상인 학생의 시험점수를 출력하라
+scores[(scores[:,0] >= 80) & (scores[:,2] >= 80)]     # & | ~
+>> 조건식이 두 개 이상일때에는 괄호를 써야함
+
+
+a[a.sum(axis=1)> 5]
+>> 행의 합이 5 이상인 행을 하나의 
+
+
+
+np.where() 함수
+np.where(a<5, 0 ,a) 조건식이 참이면 0, 아니면 a 원래 값
+참 거짓값을 적지 않으면 해당하는 행렬 번호를 출력함
+ np.where(a<5) >> array [[~~~], [~~~]]
+ a[np.where(a<5)]와 a[a< 5]는 같은 의미.  
+  >> a 전체 데이터중에 5 미만인 데이터를 하나의 array로 출력하라
+
+
+분산 : ((각각의 데이터 - 평균)^2 의 합) / 데이터의 길이
+표준편차 : 분산의 제곱근
+
+평균과 분산 ★
+a = array([1, 2, 3, 4, 5]) 일때, 
+평균 m = a.sum()/len(a)
+분산 v = ((a -m)**2).sum()/len(a)
+표준편차 s = np.sqrt(v)
+
+기본적으로 제공하는 메서드
+a.mean(axis = 1|0)
+a.var()
+a.std() 
+
+정규분포
+x축 : 관측하려는 값 (키, 몸무게)
+y축 : 특정 관측 값에서 나타나는 확률, 개수
+
+
+랜덤 함수
+np.random.rand(5,5) # 0~1 사이의 무작위 실수
+np.random.randn(5,5) #정규분포에 따른 랜덤 숫자
+np.random.randint(1, 7,size = [5,5])  # 최소값이상 최대값 미만의 랜덤 정수
+
+
+
+pepe= plt.imread('C:\\Users\\SP501_47\\Downloads\\OIP.jpg')
+print(pepe.shape)
+plt.imshow(pepe)
+
+#이미지가 곧 데이터다
+
+
+a가 5*3 행렬일때
+
+a + [1, 2, 3] << 열 단위로 더하기 (각 열마다 더하기) << 1차원, 그냥 규칙이라 외워야함
+a + [[1], [1], [1], [2], [2]] << 행 단위 더하기 (각 행마다 더하기) << 2차원
+= a + np.array([1, 1, 1, 2, 2]).reshape(5,1)
+이것이 브로드 캐스팅.. array의 모습이 달라도 연산을 가능하도록 해줌
+
+array 합치기
+np.r_[]
+np.c_[]
+vstack, hstack, dstack
+
+함수 그리기
+
+
+정렬 
+ np.sort(a) : 정렬된 array를 반환함
+ a.sort() : 원본 데이터를 바꿔버림. 사용 비추천
+ np.argsort() : (실제 데이터 비교 후에 그 데이터의) 위치번호를 정렬
+기본 오름차순 정렬. 역순 정렬을 위해 np.sort(a)[::-1]사용 가능
+
+
+a[[2,1,0]] : 행 번호 2, 1, 0 번 순서로 출력하라.
+
+
+행렬곱 
+a@b # 신경망에서 핵심 기능으로 사용함
+a의 열의 개수와  b의 행의 개수가 같아야 가능
+
+
+
