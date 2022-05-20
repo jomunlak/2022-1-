@@ -1,0 +1,15 @@
+
+
+
+ CNN : convolution neural network
+
+
+convolution
+ 이미지에 필터를 씌워  
+pooling
+ 격자를 나누어 그 범위 내에서 최대값을 뽑아내는것. 이미지 축소 기술에 적용함
+
+convolution과  pooling 과정을 적용할수록 이미지는 많아지고 크기는 작아진다.
+
+
+
